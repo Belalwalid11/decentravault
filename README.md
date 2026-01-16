@@ -27,3 +27,14 @@ blockchain stores a reference (CID) to the file.
 
 ## 📂 Project Structure
 
+decentravault/
+├── contracts/
+│ └── IPFSStorage.sol
+├── migrations/
+│ └── 2_deploy_ipfs_storage.js
+├── build/
+├── interact.js
+├── hdWalletInteract.js
+├── truffle-config.js
+└── README.md
+
