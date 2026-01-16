@@ -1,0 +1,55 @@
+truffle compile
+
+truffle migrate
+
+truffle console
+
+// Get contract instance
+let instance = await IPFSStorage.deployed()
+
+// Store your IPFS hash (replace with YOUR CID)
+await instance.setHash("QmYourIPFSHashHere")
+
+// Retrieve the hash
+let hash = await instance.getHash()
+
+// Display it
+console.log(hash)
+
+//run the script
+truffle exec scripts/interact.js
+
+
+-----------------------------------------------------------------------------
+Bonus 2: HD Wallet Implementation
+
+HD = Hierarchical Deterministic
+
+
+
+//Install HD Wallet Provider
+npm install @truffle/hdwallet-provider
+
+//open the console
+truffle console --network hdwallet
+
+
+// Get contract
+let instance = await IPFSStorage.deployed()
+
+// Get accounts from HD Wallet
+let accounts = await web3.eth.getAccounts()
+console.log("Using account:", accounts[0])
+
+// Store hash
+await instance.setHash("QmbFMke1KXqnYyBBWxB74N4c5SBnJMVAiMNRcGu6x1AwQH", {from: accounts[2]})
+
+// Retrieve hash
+let hash = await instance.getHash()
+console.log("Stored hash:", hash)
+
+
+truffle migrate --network hdwallet --reset
+
+//how to run everything with script
+truffle exec scripts/hdWalletInteract.js --network hdwallet
